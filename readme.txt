@@ -10,7 +10,7 @@ Requires at least: 2.6
 
 Tested up to: 3.2.1
 
-Stable tag: 1.0.0
+Stable tag: 1.1
 
 Automatically create and accept friendships for specified users upon new user registration. * Requires BuddyPress
 
