@@ -21,13 +21,14 @@ add_action( 'admin_init', 'skw_bpaf_admin_init');
 /* Setup Admin Menu Options & Settings */
 function skw_bpaf_admin_menu() {
 
-	if ( !is_site_admin() )
+	if ( !is_super_admin() )
 		return false;
-	add_submenu_page( 'bp-general-settings', __( 'BuddyPress Automatic Friends', 'skw-bpaf-settings'), __( 'Automatic Friends', 'skw-bpaf-settings' ), 'manage_options', 'skw-bpaf-settings', 'skw_bpaf_settings_page' );
+		add_submenu_page( 'bp-general-settings', __( 'BuddyPress Automatic Friends', 'skw-bpaf-settings'), __( 'Automatic Friends', 'skw-bpaf-settings' ), 'manage_options', 'skw-bpaf-settings', 'skw_bpaf_settings_page' );
 
 }
-add_action( 'admin_menu', 'skw_bpaf_admin_menu', '11' );
-
+/* Replaced for v1.1 */
+// add_action( 'admin_menu', 'skw_bpaf_admin_menu', '11' );
+add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', 'skw_bpaf_admin_menu', '11' );
 
 /* Settings Page */
 function skw_bpaf_settings_page(){

@@ -29,6 +29,11 @@ For more information check out:
 
 == Changelog ==
 
+= 1.1 =
+
+* Update admin menu hook to support multisite.
+* Update to support BuddyPress 1.5
+
 = 1.0 =
 
 * First official release
