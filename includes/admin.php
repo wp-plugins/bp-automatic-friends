@@ -30,20 +30,53 @@ function skw_bpaf_admin_menu() {
 // add_action( 'admin_menu', 'skw_bpaf_admin_menu', '11' );
 add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', 'skw_bpaf_admin_menu', '11' );
 
+/* Added for v1.5 */
+function skw_bpaf_display_auto_friend_users(){
+
+		echo "<h3>Selected Users</h3>";
+
+		$options = get_option( 'skw_bpaf_options' );
+		$skw_bpaf_user_ids = $options['skw_bpaf_user_ids'];
+		$friend_user_ids = explode(',', $skw_bpaf_user_ids);
+
+		foreach($friend_user_ids as $friend_user_id){
+			
+			$friend_userdata = get_userdata( $friend_user_id );
+
+			if( $friend_userdata ){
+				/* Avatar */
+				?>
+				<div style='width:200px; clear:both; border:0px solid red; padding:4px;'>
+					<div style='float:left; border:0px solid blue;margin-right:10px;'><?php echo get_avatar( $friend_user_id, 32 ); ?></div>
+
+					<div style='float: left; border:0px solid cyan;'>
+						<div><?php echo $friend_userdata->display_name;?></div>
+					</div>
+					<div style='clear:both; border:0px solid lime;'></div>
+				</div>
+				<?php
+			}//if
+		}//foreach
+		?>
+		<?php
+}
+
 /* Settings Page */
 function skw_bpaf_settings_page(){
 	?>
 	<div class="wrap">
 		<?php //screen_icon(); ?>
-		<h2>BuddyPress Automatic Friends Settings</h2>
+		<h2>BuddyPress Automatic Friends</h2>
 		<form method="post" action="options.php">
 		<?php settings_fields('skw_bpaf_options');?>
 		<?php do_settings_sections('skw_bpaf_settings_page');?>
 		<input name="Submit" type="submit" value="Save Changes" />
 		</form>
+		<?php skw_bpaf_display_auto_friend_users();?>
 	</div><!--/.wrap-->
 	<?php
 }
+
 /* Instructions*/
 function skw_bpaf_settings_text() {
 	echo "<p>Enter the user id(s) you would like to autofriend upon new user registration.</p>";
