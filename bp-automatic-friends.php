@@ -3,7 +3,7 @@
 Plugin Name: BuddyPress Automatic Friends
 Plugin URI: http://www.stevenword.com/bp-automatic-friends/
 Description: Automatically create and accept friendships for specified users upon new user registration. * Requires BuddyPress
-Version: 1.5
+Version: 1.6
 Author: Steven K. Word
 Author URI: http://www.stevenword.com
 */
@@ -26,33 +26,40 @@ Author URI: http://www.stevenword.com
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/* Loader function only fires if BuddyPress exists*/
+/** 
+ * Loader function only fires if BuddyPress exists
+ * @uses is_admin, add_action
+ * @action bp_loaded
+ * @return null
+ */
 function skw_bpaf_loader(){
 
 	/* Load the admin */
 	if ( is_admin() ){
 		require_once( dirname(__FILE__).'/includes/admin.php' );
 	}
-
-	/* A Hook into User Register */
-	add_action('user_register', 'skw_bpaf_user_register');
-
+	
+	/* A Hook into BP Core Activated User */
+	add_action('bp_core_activated_user', 'skw_bpaf_activated_user');
 }
 add_action( 'bp_loaded', 'skw_bpaf_loader');
 
 /**
- * A Hook into User Register
- * 
+ * A Hook into BP Core Activated User
  * When a initiator user registers for the blog, create initiator friendship with the specified user(s) and autoaccept those friendhips.
- *
-*/
-function skw_bpaf_user_register($initiator_user_id) {
+ * @global bp
+ * @param initiator_user_id
+ * @uses get_userdata, get_option, explode, friends_add_friend, get_friend_user_ids, total_friend_count
+ * @return null
+ */
+function skw_bpaf_activated_user($initiator_user_id) {
 	
+	global $bp;
 
-	/*Get the user data for the initiatorly registered user.*/
+	/* Get the user data for the initiatorly registered user. */
 	$initiator_user_info = get_userdata($initiator_user_id);
 
-	/*Get the user data for the user specified in the admin settings.*/
+	/* Get the user data for the user specified in the admin settings. */
 	$friend_user_info = get_userdata($friend_user_id);
 
 	/* Get the friend users id(s) */
@@ -65,21 +72,25 @@ function skw_bpaf_user_register($initiator_user_id) {
 		$friend_user_ids = explode(',', $skw_bpaf_user_ids);
 		foreach($friend_user_ids as $friend_user_id){
 			
-			/*Request the friendship*/
+			/* Request the friendship */
 			if ( !friends_add_friend( $initiator_user_id, $friend_user_id, $force_accept = true ) ) {
-				//bp_core_add_message( __( 'Friendship could not be requested.', 'buddypress' ), 'error' );
-				echo "<p>Friendship could not be requested.</p>";
-			} else {
-				//bp_core_add_message( __( 'Friendship requested', 'buddypress' ) );
-				echo "<p>Friendship requested</p>";
+				return false;
 			}
+			else {     
+				/* Get friends of $user_id */
+				$friend_ids = BP_Friends_Friendship::get_friend_user_ids( $initiator_user_id ); 
 
-			/*Get the friendship ID*/
-			$friendship_id = friends_get_friendship_id( $initiator_user_id, $friend_user_id );
-			echo "<p>Friendship ID: ".$friendship_id."</p>";
-
-		}//foreach
-	}//if
-	//exit;
+				/* Loop through the initiator's friends and update their friend counts */
+                foreach ( (array)$friend_ids as $friend_id ) { 
+					BP_Friends_Friendship::total_friend_count( $friend_id ); 	 	 
+	            }
+	            
+	            /* Update initiator friend counts */
+	            BP_Friends_Friendship::total_friend_count( $initiator_user_id ); 
+			}
+			
+		}
+			
+	}
 	return;
 }
