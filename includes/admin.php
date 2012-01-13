@@ -72,7 +72,8 @@ function skw_bpaf_display_auto_friend_users() {
 }
 
 /**
- * Settings Page 
+ * Settings Page
+ * @uses get_admin_url, settings_fields, do_settings_sections
  * @return null
  */
 
@@ -81,7 +82,7 @@ function skw_bpaf_settings_page(){
 	<div class="wrap">
 		<?php //screen_icon(); ?>
 		<h2>BuddyPress Automatic Friends</h2>
-		<form method="post" action="options.php">
+		<form method="post" action="<?php echo get_admin_url(); ?>/options.php">
 		<?php settings_fields('skw_bpaf_options');?>
 		<?php do_settings_sections('skw_bpaf_settings_page');?>
 		<input name="Submit" type="submit" value="Save Changes" />

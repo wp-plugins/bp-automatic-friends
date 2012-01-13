@@ -10,7 +10,7 @@ Requires at least: 3.3
 
 Tested up to: 3.3.1
 
-Stable tag: 1.6
+Stable tag: 1.6.1
 
 Automatically create and accept friendships for specified users upon new user registration. * Requires BuddyPress
 
@@ -28,6 +28,10 @@ For more information check out:
 
 
 == Changelog ==
+
+= 1.6.1 =
+
+* Post form to admin settings based on get_admin_url - fixes 404 upon saving form options in multisite installs
 
 = 1.6 =
 

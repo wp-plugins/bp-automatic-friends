@@ -3,7 +3,7 @@
 Plugin Name: BuddyPress Automatic Friends
 Plugin URI: http://www.stevenword.com/bp-automatic-friends/
 Description: Automatically create and accept friendships for specified users upon new user registration. * Requires BuddyPress
-Version: 1.6
+Version: 1.6.1
 Author: Steven K. Word
 Author URI: http://www.stevenword.com
 */
