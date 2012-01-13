@@ -31,10 +31,10 @@ For more information check out:
 
 = 1.6 =
 
-* Remove debug output on registration page
-* Create friendships upon user activation rather than user register
-* Update friend counts for new users
-* Update code comments to PHPDoc standards
+* Removed debug output on user activation page
+* Update code comments to PHPDoc
+* Create friendships upon user activation rather than user registration
+* Update friend counts for new users upon 
 
 = 1.5 =
 
