@@ -5,23 +5,23 @@
  * @action admin_init
  * @return null
  */
-function skw_bpaf_admin_init(){
+function skw_bpaf_admin_init() {
 
 	/* Register Settings */
 	register_setting( 'skw_bpaf_options', 'skw_bpaf_options', 'skw_bpaf_settings_validate_options' );
 
 	/* Settings - General Section */
-	add_settings_section(
+	add_settings_section (
 		'skw_bpaf_settings_general',
 		'General Options',
 		'skw_bpaf_settings_text',
 		'skw_bpaf_settings_page'
 	);
 
-	add_settings_field('skw_bpaf_user_ids', 'User ID(s)', 'skw_bpaf_settings_user_ids_input', 'skw_bpaf_settings_page', 'skw_bpaf_settings_general' );
+	add_settings_field( 'skw_bpaf_user_ids', 'User ID(s)', 'skw_bpaf_settings_user_ids_input', 'skw_bpaf_settings_page', 'skw_bpaf_settings_general' );
 
 }
-add_action( 'admin_init', 'skw_bpaf_admin_init');
+add_action( 'admin_init', 'skw_bpaf_admin_init' );
 
 /**
  * Setup Admin Menu Options & Settings
@@ -77,7 +77,7 @@ function skw_bpaf_display_auto_friend_users() {
  * @return null
  */
 
-function skw_bpaf_settings_page(){
+function skw_bpaf_settings_page() {
 	?>
 	<div class="wrap">
 		<?php //screen_icon(); ?>
@@ -107,7 +107,6 @@ function skw_bpaf_settings_text() {
  */
 function skw_bpaf_settings_user_ids_input() {
 	$options = get_option( 'skw_bpaf_options' );
-	//print_r($options);
 	$user_ids = $options['skw_bpaf_user_ids'];
 	
 	echo "<p>";
@@ -121,7 +120,7 @@ function skw_bpaf_settings_user_ids_input() {
  * @uses is_array
  * @return array, false
  */
-function skw_bpaf_settings_validate_options($input) {
+function skw_bpaf_settings_validate_options( $input ) {
 	$valid = array();
 	$valid['skw_bpaf_user_ids'] = preg_replace(
 		'/[^0-9,]/',

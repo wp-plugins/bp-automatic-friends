@@ -10,7 +10,7 @@ Requires at least: 3.3
 
 Tested up to: 3.3.1
 
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 
 Automatically create and accept friendships for specified users upon new user registration. * Requires BuddyPress
 
@@ -28,6 +28,12 @@ For more information check out:
 
 
 == Changelog ==
+
+= 1.6.2 =
+
+* Removes hooks from account signup and activation.
+* Friendships are now created upon a new user's first login.
+* Resolves conflict with plugins such as "Disable Activation" that bypass the activation process.
 
 = 1.6.1 =
 
