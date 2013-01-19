@@ -31,7 +31,7 @@ For more information check out:
 
 = 1.6.2 =
 
-* Removes hooks from account signup and activation.
+* Removes hooks from account sign-up and activation.
 * Friendships are now created upon a new user's first login.
 * Resolves conflict with plugins such as "Disable Activation" that bypass the activation process.
 
