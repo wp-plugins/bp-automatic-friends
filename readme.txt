@@ -16,10 +16,6 @@ Automatically create and accept friendships for specified users upon new user re
 
 Automatically create and accept friendships for specified users upon new user registration. * Requires BuddyPress
 
-For more information check out:
-
-[BP Automatic Friends Page][http://www.stevenword.com/plugins/bp-automatic-friends/]
-
 == Screenshots ==
 
 1. Admin Settings page:
