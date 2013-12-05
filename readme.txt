@@ -18,7 +18,7 @@ Automatically create and accept friendships for specified users upon new user re
 
 For more information check out:
 
-<a href=http://www.stevenword.com/plugins/bp-automatic-friends/>BP Automatic Friends Page</a>
+<a href="http://www.stevenword.com/plugins/bp-automatic-friends"/>BP Automatic Friends Page</a>
 
 == Screenshots ==
 
