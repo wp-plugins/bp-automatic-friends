@@ -1,14 +1,11 @@
 === BuddyPress Automatic Friends ===
 
-Contributors: stevenkword
-
+Contributors: Steven K. Word
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DWK9EXNAHLZ42
 Tags: buddypress, plugin, admin, automatic, friends, instant friends, automatic friends, registration, new members
-
-Requires at least: 3.3
-
-Tested up to: 3.3.1
-
-Stable tag: trunk
+Requires at least: 3.5
+Tested up to: 3.8
+Stable tag: 2.0.0
 
 Automatically create and accept friendships for specified users upon new user registration. * Requires BuddyPress
 
@@ -18,10 +15,21 @@ Automatically create and accept friendships for specified users upon new user re
 
 == Screenshots ==
 
-1. Admin Settings page:
+1. Global Friends overview
+2. Autocomplete usernames
 
 
 == Changelog ==
+
+= 2.0.0 =
+
+* Major OOP rewrite
+* Admin Menu compliance with modern BuddyPress versions
+* Themes options page
+* Adds donate links
+* Autocomplete on Global Friend suggestions
+* Ajax actions for adding/removing global friends
+* General beautification
 
 = 1.6.2 =
 
