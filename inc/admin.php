@@ -157,8 +157,9 @@ class BPAF_Admin {
 					}
 				}// foreach
 				unset( $i );
-			} else {
-				echo '<tr class="bpaf-empty-table-row"><td colspan="3">No Global Friends found.</td></tr>';
+			} else { ?>
+				<tr class="bpaf-empty-table-row"><td colspan="3"><?php _e('No Global Friends found.', BPAF_Core::TEXT_DOMAIN ); ?></td></tr>;
+				<?php
 			}
 			?>
 			<tfoot>
@@ -293,7 +294,8 @@ class BPAF_Admin {
 
 		$users = get_users( array(
 			//'fields' => 'user_nicename' // This is returning numeric, wtf?
-			'exclude' => $global_friend_user_ids
+			'exclude' => $global_friend_user_ids,
+			'number'  => 25 // The maximum number of users to return (large dataset)
 		 ) );
 
 		$user_ids = array();
