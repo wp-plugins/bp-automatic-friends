@@ -292,11 +292,13 @@ class BPAF_Admin {
 		global $bp;
 		$global_friend_user_ids = bpaf_get_global_friends();
 
-		$users = get_users( array(
-			//'fields' => 'user_nicename' // This is returning numeric, wtf?
+		$user_query = new WP_User_Query( array(
+			'search' => '*' . $_REQUEST[ 'search' ] . '*',
 			'exclude' => $global_friend_user_ids,
-			'number'  => 25 // The maximum number of users to return (large dataset)
-		 ) );
+		) );
+
+		// Get the results from the query, returning the first user
+  		$users = $user_query->get_results();
 
 		$user_ids = array();
 		foreach( $users as $user ) {
